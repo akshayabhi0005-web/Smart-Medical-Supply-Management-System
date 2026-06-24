@@ -228,33 +228,7 @@ Open your browser and visit:
 http://localhost:5173
 ```
 
----
-
-## 📸 Application Screenshots
-
-### 🔐 Login Page
-
-<img width="100%" alt="Login Page" src="https://via.placeholder.com/1200x600?text=Login+Page+Screenshot">
-
-### 📊 Dashboard
-
-<img width="100%" alt="Dashboard" src="https://via.placeholder.com/1200x600?text=Dashboard+Screenshot">
-
-### 💊 Medicine Management
-
-<img width="100%" alt="Medicine Management" src="https://via.placeholder.com/1200x600?text=Medicine+Management">
-
-### 🚚 Supplier Management
-
-<img width="100%" alt="Supplier Management" src="https://via.placeholder.com/1200x600?text=Supplier+Management">
-
-### 📈 Reports
-
-<img width="100%" alt="Reports" src="https://via.placeholder.com/1200x600?text=Reports">
-
-> Replace the placeholder images with actual project screenshots.
-
----
+-
 
 ## 🎯 Project Objectives
 
