@@ -228,7 +228,7 @@ Open your browser and visit:
 http://localhost:5173
 ```
 
--
+---
 
 ## 🎯 Project Objectives
 
