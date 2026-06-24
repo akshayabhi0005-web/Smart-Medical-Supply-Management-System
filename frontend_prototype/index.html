@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Medical Supply Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Ambient Background Blobs for Premium Aesthetic -->
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+
+    <!-- 1. Login Section -->
+    <section id="login-page" class="page active">
+        <div class="login-container glass-panel">
+            <div class="logo">
+                <div class="icon-wrapper"><i class="fa-solid fa-notes-medical"></i></div>
+                <h2>SMSMS</h2>
+            </div>
+            <p>Smart Medical Supply Management System</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder=" " required value="admin">
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder=" " required value="password">
+                    <label for="password">Password</label>
+                </div>
+                <button type="button" class="btn-primary" onclick="login()">Access System <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 2. Main App Wrapper -->
+    <div id="app-wrapper" class="hidden">
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-notes-medical brand-icon"></i>
+                <h2>SMSMS</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active" onclick="navigate('dashboard', this)"><i class="fa-solid fa-chart-pie"></i> Dashboard</li>
+                <li onclick="navigate('medicines', this)"><i class="fa-solid fa-pills"></i> Medicines</li>
+                <li onclick="navigate('batches', this)"><i class="fa-solid fa-boxes-stacked"></i> Inventory Batches</li>
+                <li onclick="navigate('suppliers', this)"><i class="fa-solid fa-truck-field"></i> Suppliers</li>
+                <li onclick="navigate('purchases', this)"><i class="fa-solid fa-cart-shopping"></i> Purchases</li>
+                <li onclick="navigate('departments', this)"><i class="fa-solid fa-hospital-user"></i> Departments</li>
+                <li onclick="navigate('distributions', this)"><i class="fa-solid fa-hand-holding-medical"></i> Distributions</li>
+                <li onclick="navigate('alerts', this)"><i class="fa-solid fa-bell"></i> Alerts <span class="badge">3</span></li>
+                <li onclick="navigate('reports', this)"><i class="fa-solid fa-file-invoice"></i> Reports</li>
+            </ul>
+            <div class="sidebar-footer">
+                <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-title">
+                    <h1 id="page-title">Dashboard</h1>
+                </div>
+                <div class="user-profile glass-panel">
+                    <div class="user-info">
+                        <strong>Dr. Inventory Manager</strong>
+                        <span>System Admin</span>
+                    </div>
+                    <div class="avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                
+                <!-- DASHBOARD -->
+                <section id="dashboard" class="view active">
+                    <div class="widgets-grid">
+                        <div class="widget glass-panel glow-blue">
+                            <div class="widget-icon"><i class="fa-solid fa-pills"></i></div>
+                            <div class="widget-info">
+                                <h3>Total Medicines</h3>
+                                <h2>1,245</h2>
+                            </div>
+                        </div>
+                        <div class="widget glass-panel glow-green">
+                            <div class="widget-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                            <div class="widget-info">
+                                <h3>Pending Orders</h3>
+                                <h2>12</h2>
+                            </div>
+                        </div>
+                        <div class="widget glass-panel glow-orange">
+                            <div class="widget-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <div class="widget-info">
+                                <h3>Low Stock Items</h3>
+                                <h2>8</h2>
+                            </div>
+                        </div>
+                        <div class="widget glass-panel glow-red">
+                            <div class="widget-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                            <div class="widget-info">
+                                <h3>Expiring Batches</h3>
+                                <h2>3</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-tables">
+                        <div class="table-container glass-panel">
+                            <div class="table-header">
+                                <h3>Recent Distributions</h3>
+                                <button class="btn-text">View All</button>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Department</th>
+                                        <th>Medicine</th>
+                                        <th>Qty</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Oct 24</td><td>ICU</td><td>Dolo 650</td><td>50</td><td><span class="status completed">Issued</span></td></tr>
+                                    <tr><td>Oct 24</td><td>Emergency</td><td>Syringes</td><td>200</td><td><span class="status completed">Issued</span></td></tr>
+                                    <tr><td>Oct 23</td><td>Cardiology</td><td>Aspirin</td><td>30</td><td><span class="status completed">Issued</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-container glass-panel">
+                            <div class="table-header">
+                                <h3>Critical Alerts</h3>
+                            </div>
+                            <ul class="alert-list">
+                                <li class="alert-item danger">
+                                    <div class="alert-icon-box"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                    <div class="alert-text"><strong>Insulin (Batch B42)</strong> expires in 15 days.</div>
+                                </li>
+                                <li class="alert-item warning">
+                                    <div class="alert-icon-box"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                    <div class="alert-text"><strong>Paracetamol</strong> stock is below reorder level (12/50).</div>
+                                </li>
+                                <li class="alert-item danger">
+                                    <div class="alert-icon-box"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                    <div class="alert-text"><strong>N95 Masks</strong> physical stock is zero!</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MEDICINES -->
+                <section id="medicines" class="view hidden">
+                    <div class="page-controls glass-panel">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Search medicines catalog...">
+                        </div>
+                        <button class="btn-primary"><i class="fa-solid fa-plus"></i> Add Medicine</button>
+                    </div>
+                    <div class="table-container glass-panel full-width mt-4">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Total Stock</th>
+                                    <th>Reorder Level</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>M001</td><td>Dolo 650</td><td>Tablet</td><td><span class="stock safe">450</span></td><td>100</td><td><button class="btn-icon"><i class="fa-solid fa-pen"></i></button></td></tr>
+                                <tr><td>M002</td><td>Amoxicillin</td><td>Capsule</td><td><span class="stock low">80</span></td><td>150</td><td><button class="btn-icon"><i class="fa-solid fa-pen"></i></button></td></tr>
+                                <tr><td>M003</td><td>Insulin</td><td>Injection</td><td><span class="stock safe">120</span></td><td>50</td><td><button class="btn-icon"><i class="fa-solid fa-pen"></i></button></td></tr>
+                                <tr><td>M004</td><td>Syringes</td><td>Consumable</td><td><span class="stock empty">0</span></td><td>500</td><td><button class="btn-icon"><i class="fa-solid fa-pen"></i></button></td></tr>
+                                <tr><td>M005</td><td>Gloves</td><td>Consumable</td><td><span class="stock safe">800</span></td><td>200</td><td><button class="btn-icon"><i class="fa-solid fa-pen"></i></button></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- BATCHES -->
+                <section id="batches" class="view hidden">
+                    <div class="page-controls glass-panel">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Search by batch number...">
+                        </div>
+                    </div>
+                    <div class="table-container glass-panel full-width mt-4">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Batch No</th>
+                                    <th>Medicine</th>
+                                    <th>Quantity</th>
+                                    <th>Expiry Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>B101</td><td>Dolo 650</td><td>200</td><td>2028-10-01</td><td><span class="status completed">Available</span></td></tr>
+                                <tr><td>B102</td><td>Amoxicillin</td><td>80</td><td>2027-05-15</td><td><span class="status completed">Available</span></td></tr>
+                                <tr><td>B103</td><td>Face Masks</td><td>500</td><td>2024-11-01</td><td><span class="status warning">Expiring Soon</span></td></tr>
+                                <tr><td>B104</td><td>Insulin</td><td>0</td><td>2023-01-01</td><td><span class="status danger">Expired</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SUPPLIERS -->
+                <section id="suppliers" class="view hidden">
+                    <div class="page-controls glass-panel">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Search suppliers...">
+                        </div>
+                        <button class="btn-primary"><i class="fa-solid fa-plus"></i> Add Supplier</button>
+                    </div>
+                    <div class="table-container glass-panel full-width mt-4">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Supplier Name</th>
+                                    <th>Contact Person</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>MediCorp Inc.</td><td>John Doe</td><td>555-1234</td><td><span class="status completed">Active</span></td></tr>
+                                <tr><td>PharmaGlobal</td><td>Jane Smith</td><td>555-9876</td><td><span class="status completed">Active</span></td></tr>
+                                <tr><td>Local Supplies LLC</td><td>Bob Brown</td><td>555-5555</td><td><span class="status danger">Inactive</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- PURCHASES -->
+                <section id="purchases" class="view hidden">
+                    <div class="split-layout">
+                        <div class="form-container glass-panel">
+                            <div class="table-header"><h3>Create Purchase Order</h3></div>
+                            <form>
+                                <div class="input-group">
+                                    <select><option>MediCorp Inc.</option><option>PharmaGlobal</option></select>
+                                    <label class="active">Supplier</label>
+                                </div>
+                                <div class="input-group">
+                                    <select><option>Dolo 650</option><option>Amoxicillin</option></select>
+                                    <label class="active">Medicine</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="number" placeholder=" " required>
+                                    <label>Quantity</label>
+                                </div>
+                                <button type="button" class="btn-primary full-width mt-2">Place Order</button>
+                            </form>
+                        </div>
+                        <div class="table-container glass-panel">
+                            <div class="table-header"><h3>Purchase History</h3></div>
+                            <table class="data-table">
+                                <thead><tr><th>PO #</th><th>Supplier</th><th>Amount</th><th>Status</th></tr></thead>
+                                <tbody>
+                                    <tr><td>PO-104</td><td>MediCorp Inc.</td><td>$4,500</td><td><span class="status completed">Completed</span></td></tr>
+                                    <tr><td>PO-105</td><td>PharmaGlobal</td><td>$1,200</td><td><span class="status warning">Pending</span></td></tr>
+                                    <tr><td>PO-106</td><td>PharmaGlobal</td><td>$800</td><td><span class="status danger">Cancelled</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DEPARTMENTS -->
+                <section id="departments" class="view hidden">
+                    <div class="table-container glass-panel full-width">
+                        <div class="table-header"><h3>Hospital Departments</h3></div>
+                        <table class="data-table">
+                            <thead><tr><th>ID</th><th>Name</th><th>Location</th><th>Contact</th></tr></thead>
+                            <tbody>
+                                <tr><td>1</td><td>Emergency</td><td>Building A</td><td>555-0100</td></tr>
+                                <tr><td>2</td><td>ICU</td><td>Building A</td><td>555-0101</td></tr>
+                                <tr><td>3</td><td>Cardiology</td><td>Building B</td><td>555-0102</td></tr>
+                                <tr><td>4</td><td>Neurology</td><td>Building C</td><td>555-0103</td></tr>
+                                <tr><td>5</td><td>General Ward</td><td>Building A</td><td>555-0104</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- DISTRIBUTIONS -->
+                <section id="distributions" class="view hidden">
+                    <div class="split-layout">
+                        <div class="form-container glass-panel">
+                            <div class="table-header"><h3>Issue Stock to Department</h3></div>
+                            <form>
+                                <div class="input-group">
+                                    <select><option>ICU</option><option>Emergency</option></select>
+                                    <label class="active">Requesting Department</label>
+                                </div>
+                                <div class="input-group">
+                                    <select><option>B101 - Dolo 650 (Qty: 200)</option><option>B102 - Amoxicillin (Qty: 80)</option></select>
+                                    <label class="active">Select Physical Batch</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="number" placeholder=" " required>
+                                    <label>Quantity to Issue</label>
+                                </div>
+                                <button type="button" class="btn-primary full-width mt-2">Issue Stock</button>
+                            </form>
+                        </div>
+                        <div class="table-container glass-panel">
+                            <div class="table-header"><h3>Distribution Log</h3></div>
+                            <table class="data-table">
+                                <thead><tr><th>Dept</th><th>Batch</th><th>Qty</th><th>Date</th></tr></thead>
+                                <tbody>
+                                    <tr><td>ICU</td><td>B101</td><td>50</td><td>Today</td></tr>
+                                    <tr><td>Emergency</td><td>B205</td><td>200</td><td>Yesterday</td></tr>
+                                    <tr><td>Cardiology</td><td>B101</td><td>10</td><td>Oct 20</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ALERTS -->
+                <section id="alerts" class="view hidden">
+                    <div class="alerts-grid">
+                        <div class="alert-card glass-panel glow-red">
+                            <div class="alert-icon danger-text"><i class="fa-solid fa-calendar-xmark"></i></div>
+                            <div class="alert-content">
+                                <h4>Expiry Alert</h4>
+                                <p>Batch <strong>B103</strong> of Face Masks expires on Nov 1, 2024.</p>
+                                <span class="alert-time">Generated: 2 hours ago</span>
+                            </div>
+                            <button class="btn-icon outline"><i class="fa-solid fa-check"></i></button>
+                        </div>
+                        <div class="alert-card glass-panel glow-orange">
+                            <div class="alert-icon warning-text"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                            <div class="alert-content">
+                                <h4>Low Stock Alert</h4>
+                                <p><strong>Amoxicillin</strong> has dropped below Reorder Level (150). Current: 80.</p>
+                                <span class="alert-time">Generated: 5 hours ago</span>
+                            </div>
+                            <button class="btn-icon outline"><i class="fa-solid fa-check"></i></button>
+                        </div>
+                        <div class="alert-card glass-panel glow-orange">
+                            <div class="alert-icon warning-text"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                            <div class="alert-content">
+                                <h4>Low Stock Alert</h4>
+                                <p><strong>Syringes</strong> physical stock is Zero!</p>
+                                <span class="alert-time">Generated: 1 day ago</span>
+                            </div>
+                            <button class="btn-icon outline"><i class="fa-solid fa-check"></i></button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- REPORTS -->
+                <section id="reports" class="view hidden">
+                    <div class="widgets-grid">
+                        <div class="widget glass-panel">
+                            <h3>Total Inventory Value</h3>
+                            <h2 class="primary-text">$45,230.00</h2>
+                            <p>Across all active batches</p>
+                        </div>
+                        <div class="widget glass-panel">
+                            <h3>Monthly Purchase Spend</h3>
+                            <h2 class="danger-text">$12,400.00</h2>
+                            <p>Current Month</p>
+                        </div>
+                        <div class="widget glass-panel">
+                            <h3>Total Distributed Value</h3>
+                            <h2 class="warning-text">$8,900.00</h2>
+                            <p>Current Month</p>
+                        </div>
+                    </div>
+                    <div class="table-container glass-panel full-width mt-4">
+                        <div class="table-header">
+                            <h3>Department Consumption Report</h3>
+                            <button class="btn-text"><i class="fa-solid fa-download"></i> Export PDF</button>
+                        </div>
+                        <table class="data-table">
+                            <thead><tr><th>Department</th><th>Total Items Used</th><th>Estimated Cost</th></tr></thead>
+                            <tbody>
+                                <tr><td>ICU</td><td>1,240</td><td>$5,400.00</td></tr>
+                                <tr><td>Emergency</td><td>3,500</td><td>$4,100.00</td></tr>
+                                <tr><td>Cardiology</td><td>800</td><td>$2,300.00</td></tr>
+                                <tr><td>Neurology</td><td>450</td><td>$1,200.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
